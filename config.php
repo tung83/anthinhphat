@@ -24,14 +24,15 @@ unset($process);
 //define area
 define('_hostName'  , 'localhost');	
 
-define('_userName'  , 'dulichat_root');	
+//define('_userName'  , 'dulichat_root');	
+//define('_dbName'    , 'dulichat_db');	
+//define('_pass'      , 'hpz)CN@IC?y!');
+
+
+
+define('_userName'  , 'tung');	
 define('_dbName'    , 'dulichat_db');	
-define('_pass'      , 'hpz)CN@IC?y!');
-
-
-//define('_userName'  , 'root');	
-//define('_dbName'    , 'an_thinh_phat');	
-//define('_pass'      , '');
+define('_pass'      , 'tung');
 
 define('domain'     ,'lavoine.vn');
 define('root'       ,$_SERVER['DOCUMENT_ROOT']);
@@ -43,6 +44,7 @@ define('selfPath'   ,'/file/self/');
 define('phpLib'     ,root.'/object/');
 define('pageLib'    ,root.'/page/');
 define('widgetLib'  ,root.'/widget/');
+define('head_title'    ,'An Thịnh Phát');
 
 
 //define area end

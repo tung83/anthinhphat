@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta name="description" content=""/>
     <meta name="author" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>.:AN THỊNH PHÁT:.</title>
-	<link rel="icon" type="image/png" href="<?=selfPath?>logo.png"/>   
+    <?=pageHeader($view,$db)?>  
+    <link rel="icon" type="image/png" href="<?=selfPath?>logo.png"/>   
     <?=common::basic_css()?> 
     <?=common::basic_js()?>
 </head>

@@ -1,6 +1,6 @@
 <?php
 class contact{
-    private $db,$view,$lang,$title;
+    private $db,$view,$lang,$title,$basic_config;
     function __construct($db,$lang='vi'){
         $this->db=$db;
         $this->db->reset();
@@ -13,7 +13,8 @@ class contact{
         }else{
             $this->view=$item['view'];
             $this->title=$item['title'];
-        }
+        }     
+  
     }
     function breadcrumb(){
         $this->db->reset();
@@ -50,11 +51,9 @@ class contact{
             );
             try{
                 $this->send_mail($insert);
-                var_dump($insert);
                 $this->db->insert('contact',$insert);                
                 //header('Location:'.$_SERVER['REQUEST_URI']);
                 echo '<script>alert("Thông tin của bạn đã được gửi đi, BQT sẽ phản hồi sớm nhất có thể, Xin cám ơn!");
-                    location.href="'.$_SERVER['REQUEST_URI'].'"
                 </script>';
             }catch(Exception $e){
                 echo $e->getMessage();
@@ -133,26 +132,30 @@ class contact{
         return $str;
     }
     function send_mail($item){
-        $basic_config=$this->db->getOne('basic_config');
+        $basic_config=$this->db->getOne('basic_config');      
+      
         //Create a new PHPMailer instance
         include_once phpLib.'PHPMailer/PHPMailerAutoload.php';
-        $mail = new PHPMailer;
-
-    	$mail->isSMTP();
-    	$mail->Host = $basic_config['smtp_server'];
-    	$mail->SMTPAuth = TRUE;
-    	$mail->Username = $basic_config['smtp_user'];
-    	$mail->Password = $basic_config['smtp_pwd'];
-    
-    	$mail->From = $basic_config['smtp_user'];
-    	$mail->FromName = $basic_config['smtp_sender_name'];
-    	$mail->addAddress($basic_config['smtp_receiver']);
-    
-    	
-        //Set the subject line
-        $mail->isHTML();
+        $mail = new PHPMailer(); // create a new object
+        $mail->IsSMTP(); // enable SMTP
+        $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail        
+        //Whether to use SMTP authentication
+        //$mail->SMTPDebug = 3;
+        //Ask for HTML-friendly debug output
+        //$mail->Debugoutput = 'html';
+        //$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        $mail->SMTPAuth = true;
+        $mail->Host = $basic_config['smtp_server'];
+        $mail->Port = $basic_config['smtp_port']; // or 587
+        $mail->IsHTML(true);
+        $mail->Username = $basic_config['smtp_user'];
+        $mail->Password = $basic_config['smtp_pwd'];
+        $mail->SetFrom($basic_config['smtp_user'], $basic_config['smtp_sender_name']);
+        $mail->AddAddress($basic_config['smtp_receiver']);
+        $mail->SMTPAutoTLS = false;
         $mail->CharSet = 'UTF-8';
-        $mail->Subject =  'Contact sent from website';
+        $mail->Subject =  'Khách hàng liên hệ gửi từ website';        
+        
         $mail->Body = '
         <html>
         <head>
@@ -165,13 +168,11 @@ class contact{
         	<p>Phone: '.$item['phone'].'</p>
         	
         	<p>Email: '.$item['email'].'</p>
-            <p>Tiêu Đề: '.$item['fax'].'</p>
+                <p>Tiêu Đề: '.$item['subject'].'</p>
         	<p>Content: '.nl2br($item['content']).'</p>
         </body>
         </html>';
-        if ($mail->send()) {
-            echo "Message sent!";
-        } else {
+        if (!$mail->send()) {
             echo "Mailer Error: " . $mail->ErrorInfo;
         }
     }
