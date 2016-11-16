@@ -1,0 +1,73 @@
+.navbar{
+    border:none;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefefe+0,f8f8f8+50,f6f6f6+51,f1f1f1+100 */
+    background: #fefefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fefefe 0%, #f8f8f8 50%, #f6f6f6 51%, #f1f1f1 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #fefefe 0%,#f8f8f8 50%,#f6f6f6 51%,#f1f1f1 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #fefefe 0%,#f8f8f8 50%,#f6f6f6 51%,#f1f1f1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f1f1f1',GradientType=0 ); /* IE6-9 */
+    margin:0;
+    padding:0
+}
+.navbar .navbar-brand{
+
+}
+.navbar .navbar-nav li{
+    padding:0  ;
+    margin:0 !important;
+}
+.navbar .navbar-nav li a{
+    text-transform:uppercase;
+    font-family:'Myriadpro-Regular';
+    font-size:15px;
+    color:#4b4b4b;
+    margin:0 !important;
+    border-bottom:2px solid #f1f1f1
+}
+.navbar .navbar-nav li:hover a,.navbar .navbar-nav li.active:hover a,.navbar .navbar-nav li.active a{
+    color:#2aa499;
+    background:none;
+    border-bottom:2px solid #6a9d8e
+}
+.navbar .navbar-right li:hover a{
+    border-bottom:none
+}
+.dropdown-menu{
+    background:#196651
+}
+.dropdown-menu li{
+    
+}
+.dropdown-menu li a{
+    padding:10px 30px 10px 10px !important;
+    color:#d1d380 !important
+}
+.dropdown-menu li:hover a{
+    color:#fff !important
+}
+/*My Define*/
+@media(max-width:991px){
+    .navbar{
+        
+    }
+}
+@media(min-width:992px){
+    .navbar .navbar-brand{
+        display:block;
+        position:relative;
+        width:200px;
+    }
+    .navbar .navbar-nav li a{
+        padding-top:34px;
+        padding-bottom:34px
+    }
+    .navbar .navbar-form{
+        padding:17px 0px
+    }
+    .navbar .navbar-brand img{
+        position:absolute;
+        top:-30px;
+        left:0px
+    }
+}
+/*My Define*/
